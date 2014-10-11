@@ -1,0 +1,21 @@
+here we will explore docker further
+we will use the ubuntu image hosted on docker repositories
+
+
+1) sudo docker info 
+if docker daemon is running then u get a bunch of information
+
+if not 
+sudo start docker
+
+2) launching/creating our first ubuntu container
+
+sudo docker run -i -t ubuntu /bash/bin
+
+3) from another terminal type, its gives us the containers that are running 
+
+sudo docker jps
+
+
+4) typing exit on the bash/bin will stop the container  
+

@@ -1,0 +1,61 @@
+
+1) update the repository
+ what we are doing here is redirecting the output to /docker.list
+ after u run this command , you can cat /docker.list
+
+sudo sh -c "echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
+
+
+2) install curl is not available
+
+
+3) Now get the GPG verification key
+
+curl -s https://get.docker.io/gpg | sudo apt-key add -
+
+
+4) sudo apt-get update 
+
+this will look at /docker.list and update the apt sources list available
+
+
+5) install docker
+
+sudo apt-get install lxc-docker
+
+
+6) to check if docker daemon is running , as soon as the package is installed docker daemon runs, 
+to change the port where the daemon is listening google it.
+
+sudo docker info 
+
+
+Note: In companies this may not work due to firewalls etc.
+In Ubuntu if you use the UWF ie uncomplicated firewall then some seting have to be changed to get Docker work with Ubuntu
+
+Docker works with network bridge to manage networking on your computers, by default UFW drops all forwarded packets.You need to enable forwarding by editing /etc/default/uwf   file.
+
+set DEFAULT_FOWARD_POLICY="ACCEPT"
+
+save the file and reload
+
+sudo uwf reload
+
+
+
+
+7) to check status of docker daemon
+
+sudo status docker
+
+8) to stop docker
+
+sudo stop docker
+sudo start docker
+
+
+
+
+
+
+

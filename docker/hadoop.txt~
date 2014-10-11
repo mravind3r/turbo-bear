@@ -1,0 +1,57 @@
+1) running hadoop on pseudo dist mode 
+
+some images are already existing.
+two ways we either build it from the docker file or use the image.
+
+2) pull the image 
+
+docker pull sequenceiq/hadoop-docker:2.5.0
+
+3) pull and build the image in one shot
+
+docker run -i -t sequenceiq/hadoop-docker:2.5.0 /etc/bootstrap.sh -bash
+
+
+
+
+******************** program from techtraits.com ***************
+
+# Run the hadoop docker container
+docker run -p 50070:50070 -i -t sequenceiq/hadoop-docker /etc/bootstrap.sh -bash
+
+# Change to hadoop directory in container
+cd $HADOOP_PREFIX
+
+# Create Director for input files in HDFS
+bin/hdfs dfs -mkdir input/wordcount
+
+# Create a test input file
+echo "This is the foo file" > foo.txt
+
+# Create another test input file
+echo "This is the bar file" > bar.txt
+
+# Copy files to HDFS
+bin/hdfs dfs -copyFromLocal foo.txt input/wordcount/
+bin/hdfs dfs -copyFromLocal bar.txt input/wordcount/
+
+# Confirm files got copied
+bin/hdfs dfs -ls input/wordcount
+Found 2 items
+-rw-r--r--   1 root supergroup         21 2014-07-06 21:40 input/wordcount/bar.txt
+-rw-r--r--   1 root supergroup         21 2014-07-06 21:40 input/wordcount/foo.txt
+
+# Get the Jar file
+curl http://techtraits.com.s3.amazonaws.com/assets/wordcount.jar > wordcount.jar
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+101  5368  101  5368    0     0  23679      0 --:--:-- --:--:-- --:--:-- 67949
+
+#Run the hadoop job
+bin/hadoop jar wordcount.jar com.techtraits.hadoop.wordcount.WordCount input/wordcount/ output/wordcount/
+
+
+
+
+
+
