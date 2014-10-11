@@ -55,7 +55,15 @@ sudo start docker
 
 
 
+9) to copy files from host to docker
 
+$docker ps
+
+CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
+
+d8e703d7e303 solidleon/ssh:latest /usr/sbin/sshd -D cranky_pare
+
+$docker inspect -f '{{.Id}}' cranky_pare 
 
 
 
